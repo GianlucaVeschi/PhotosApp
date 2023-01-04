@@ -1,11 +1,13 @@
 package com.gianlucaveschi.photosapp.presentation
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
+import androidx.lifecycle.viewModelScope
 import com.gianlucaveschi.photosapp.domain.interactors.GetPhotoItemListUseCase
+import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,12 +16,14 @@ class MainViewModel @Inject constructor(
     private val getPhotoItemListUseCase: GetPhotoItemListUseCase
 ) : ViewModel() {
 
-    init {
-        GlobalScope.launch {
+    val photosList: MutableState<List<PhotoItem>?> =
+        mutableStateOf(listOf())
+
+    fun getPhotosList() {
+        viewModelScope.launch {
             val photos = getPhotoItemListUseCase()
+            photosList.value = photos
             Log.d("INDIA", ": $photos ")
         }
     }
-
-    fun getPhotosList(){}
 }
