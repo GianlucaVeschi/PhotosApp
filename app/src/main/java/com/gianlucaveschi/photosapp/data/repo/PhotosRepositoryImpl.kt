@@ -8,9 +8,9 @@ class PhotosRepositoryImpl (
     private val photosService: PhotosService
 ) : PhotosRepository {
 
-    override suspend fun getPhotosList(): Response<List<PhotoItemApiModel>> =
-        photosService.getPhotosList()
+    override suspend fun getPhotosList(): List<PhotoItemApiModel>? =
+        photosService.getPhotosList().body().takeIf { it != null }
 
-    override suspend fun getPhotoItem(photoId: String): Response<PhotoItemApiModel> =
-        photosService.getPhotoItem(photoId)
+    override suspend fun getPhotoItem(photoId: String): PhotoItemApiModel? =
+        photosService.getPhotoItem(photoId).body().takeIf { it != null }
 }
