@@ -1,4 +1,4 @@
-package com.gianlucaveschi.photosapp.presentation
+package com.gianlucaveschi.photosapp.presentation.list
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class PhotosListViewModel @Inject constructor(
     private val getPhotoItemListUseCase: GetPhotoItemListUseCase
 ) : ViewModel() {
 

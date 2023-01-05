@@ -1,4 +1,4 @@
-package com.gianlucaveschi.photosapp.presentation.screens
+package com.gianlucaveschi.photosapp.presentation.list
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
