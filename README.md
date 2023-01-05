@@ -2,7 +2,7 @@
 
 # StockPricesTrackerCompose
 
-This project showcases an app which displays a list of images from the public api '''https://jsonplaceholder.typicode.com''' 
+This project showcases an app which displays a list of images from the public api ```https://jsonplaceholder.typicode.com```
 
 # Tech Stack
 - Kotlin
