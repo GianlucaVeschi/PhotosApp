@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,13 +15,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.navigation.fragment.NavHostFragment
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 
-@OptIn(ExperimentalCoilApi::class)
+@OptIn(ExperimentalCoilApi::class, ExperimentalMaterialApi::class)
 @Composable
-fun PhotosListScreen(photos: List<PhotoItem>) {
+fun PhotosListScreen(
+    photos: List<PhotoItem>,
+    onPhotoItemClicked: (photoId : Int) -> Unit
+) {
     LazyColumn {
         items(photos) { photo ->
             Card(
@@ -30,7 +35,10 @@ fun PhotosListScreen(photos: List<PhotoItem>) {
                     .padding(10.dp)
                     .wrapContentHeight(align = Alignment.Top),
                 shape = CutCornerShape(topEnd = 20.dp),
-                elevation = 8.dp
+                elevation = 8.dp,
+                onClick = {
+                    onPhotoItemClicked(photo.id)
+                }
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),

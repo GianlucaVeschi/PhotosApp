@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import com.gianlucaveschi.photosapp.presentation.theme.PhotosAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,12 +19,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class PhotosListFragment : Fragment() {
 
     private val photosListViewModel: PhotosListViewModel by viewModels()
+    private val fragment = this
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return ComposeView(requireContext()).apply {
             setContent {
                 PhotosAppTheme {
@@ -34,7 +36,16 @@ class PhotosListFragment : Fragment() {
                         photosListViewModel.getPhotosList()
                         val photosList = photosListViewModel.photosList.value
                         if (photosList != null) {
-                            PhotosListScreen(photosList)
+                            PhotosListScreen(
+                                photos = photosList,
+                                onPhotoItemClicked = { photoId ->
+                                    val destination = PhotosListFragmentDirections
+                                        .actionListFragmentToDetailFragment(photoId)
+                                    NavHostFragment
+                                        .findNavController(fragment)
+                                        .navigate(directions = destination)
+                                }
+                            )
                         }
                     }
                 }
