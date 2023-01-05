@@ -1,20 +1,43 @@
 package com.gianlucaveschi.photosapp.presentation.detail
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
-fun PhotoDetailScreen(photo: Int) {
-    Box(
-        modifier = Modifier.fillMaxWidth()
+fun PhotoDetailScreen(photoDetail: PhotoItem) {
+    Column(
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
     ) {
-        Text(
-            modifier = Modifier.align(Alignment.Center),
-            text = "some text $photo"
-        )
+        Column {
+            Image(
+                painter = rememberImagePainter(photoDetail.thumbnailUrl),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.size(size = 16.dp))
+            Text(
+                text = "ID: ${photoDetail.id}"
+            )
+            Spacer(modifier = Modifier.size(size = 16.dp))
+            Text(
+                text = "Title  ${photoDetail.title}"
+            )
+            Spacer(modifier = Modifier.size(size = 16.dp))
+            Text(
+                text = "Album  ${photoDetail.albumId}"
+            )
+        }
     }
 }

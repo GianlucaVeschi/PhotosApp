@@ -11,5 +11,5 @@ interface PhotosService {
     suspend fun getPhotosList(): Response<List<PhotoItemApiModel>>
 
     @GET("/photos/{photoId}")
-    suspend fun getPhotoItem(@Path("photoId") photoId: String): Response<PhotoItemApiModel>
+    suspend fun getPhotoItem(@Path("photoId") photoId: Int): Response<PhotoItemApiModel>
 }

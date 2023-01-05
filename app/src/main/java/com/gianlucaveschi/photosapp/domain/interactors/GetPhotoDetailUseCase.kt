@@ -4,10 +4,10 @@ import com.gianlucaveschi.photosapp.data.mapper.mapToDomain
 import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 
-class GetPhotoItemListUseCase(
+class GetPhotoDetailUseCase(
     private val photosRepository: PhotosRepository
 ) {
-    suspend operator fun invoke(): List<PhotoItem>? {
-        return photosRepository.getPhotosList()?.mapToDomain()
+    suspend operator fun invoke(photoId : Int): PhotoItem? {
+        return photosRepository.getPhotoItem(photoId)?.mapToDomain()
     }
 }

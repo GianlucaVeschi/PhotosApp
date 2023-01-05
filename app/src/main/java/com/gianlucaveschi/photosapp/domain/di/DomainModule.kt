@@ -1,7 +1,8 @@
 package com.gianlucaveschi.photosapp.domain.di
 
 import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
-import com.gianlucaveschi.photosapp.domain.interactors.GetPhotoItemListUseCase
+import com.gianlucaveschi.photosapp.domain.interactors.GetPhotoDetailUseCase
+import com.gianlucaveschi.photosapp.domain.interactors.GetPhotosListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +17,15 @@ class DomainModule {
     @Provides
     fun provideGetPhotoItemListUseCase(
         photosRepository: PhotosRepository
-    ) = GetPhotoItemListUseCase(
+    ) = GetPhotosListUseCase(
+        photosRepository
+    )
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetPhotoDetailUseCase(
+        photosRepository: PhotosRepository
+    ) = GetPhotoDetailUseCase(
         photosRepository
     )
 

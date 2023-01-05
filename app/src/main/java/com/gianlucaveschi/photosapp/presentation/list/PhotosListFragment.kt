@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
+import com.gianlucaveschi.photosapp.presentation.screens.ErrorScreen
 import com.gianlucaveschi.photosapp.presentation.theme.PhotosAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,6 +47,9 @@ class PhotosListFragment : Fragment() {
                                         .navigate(directions = destination)
                                 }
                             )
+                        }
+                        else {
+                            ErrorScreen()
                         }
                     }
                 }

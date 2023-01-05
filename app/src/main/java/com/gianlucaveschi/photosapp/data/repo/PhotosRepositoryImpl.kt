@@ -11,6 +11,6 @@ class PhotosRepositoryImpl (
     override suspend fun getPhotosList(): List<PhotoItemApiModel>? =
         photosService.getPhotosList().body().takeIf { it != null }
 
-    override suspend fun getPhotoItem(photoId: String): PhotoItemApiModel? =
+    override suspend fun getPhotoItem(photoId: Int): PhotoItemApiModel? =
         photosService.getPhotoItem(photoId).body().takeIf { it != null }
 }

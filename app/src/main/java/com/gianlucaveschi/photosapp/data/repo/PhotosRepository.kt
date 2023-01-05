@@ -5,5 +5,5 @@ import retrofit2.Response
 
 interface PhotosRepository {
     suspend fun getPhotosList(): List<PhotoItemApiModel>?
-    suspend fun getPhotoItem(photoId: String): PhotoItemApiModel?
+    suspend fun getPhotoItem(photoId: Int): PhotoItemApiModel?
 }
