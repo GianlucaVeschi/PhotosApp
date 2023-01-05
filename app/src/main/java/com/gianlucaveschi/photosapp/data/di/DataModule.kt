@@ -43,9 +43,9 @@ class DataModule {
 
         @Singleton
         @Provides
-        fun provideGithubRestService(okHttpClient: OkHttpClient): PhotosService {
+        fun provideRestService(okHttpClient: OkHttpClient): PhotosService {
             return Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com")
+                .baseUrl(API_BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                 .build()
@@ -59,3 +59,5 @@ class DataModule {
         }
     }
 }
+
+const val API_BASE_URL = "https://jsonplaceholder.typicode.com"

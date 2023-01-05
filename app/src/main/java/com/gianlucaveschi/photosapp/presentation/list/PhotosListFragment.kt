@@ -1,5 +1,6 @@
 package com.gianlucaveschi.photosapp.presentation.list
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +8,17 @@ import android.view.ViewGroup
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
+import com.gianlucaveschi.photosapp.data.util.ConnectivityObserver
+import com.gianlucaveschi.photosapp.data.util.NetworkConnectivityObserver
 import com.gianlucaveschi.photosapp.presentation.screens.ErrorScreen
+import com.gianlucaveschi.photosapp.presentation.screens.PhotosListScreen
 import com.gianlucaveschi.photosapp.presentation.theme.PhotosAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +28,8 @@ class PhotosListFragment : Fragment() {
     private val photosListViewModel: PhotosListViewModel by viewModels()
     private val fragment = this
 
+    private lateinit var connectivityObserver: ConnectivityObserver
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,30 +38,41 @@ class PhotosListFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 PhotosAppTheme {
+                    val status by connectivityObserver.observe().collectAsState(
+                        initial = ConnectivityObserver.Status.Unavailable
+                    )
                     Surface(
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colors.background
                     ) {
-                        photosListViewModel.getPhotosList()
-                        val photosList = photosListViewModel.photosList.value
-                        if (photosList != null) {
-                            PhotosListScreen(
-                                photos = photosList,
-                                onPhotoItemClicked = { photoId ->
-                                    val destination = PhotosListFragmentDirections
-                                        .actionListFragmentToDetailFragment(photoId)
-                                    NavHostFragment
-                                        .findNavController(fragment)
-                                        .navigate(directions = destination)
-                                }
-                            )
-                        }
-                        else {
+                        if (status == ConnectivityObserver.Status.Available) {
+                            photosListViewModel.getPhotosList()
+                            val photosList = photosListViewModel.photosList.value
+                            if (photosList != null) {
+                                PhotosListScreen(
+                                    photos = photosList,
+                                    onPhotoItemClicked = { photoId ->
+                                        val destination = PhotosListFragmentDirections
+                                            .actionListFragmentToDetailFragment(photoId)
+                                        NavHostFragment
+                                            .findNavController(fragment)
+                                            .navigate(directions = destination)
+                                    }
+                                )
+                            } else {
+                                ErrorScreen()
+                            }
+                        } else {
                             ErrorScreen()
                         }
                     }
                 }
             }
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        connectivityObserver = NetworkConnectivityObserver(context)
     }
 }

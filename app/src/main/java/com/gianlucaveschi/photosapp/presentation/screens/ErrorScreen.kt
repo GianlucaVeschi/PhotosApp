@@ -2,7 +2,6 @@ package com.gianlucaveschi.photosapp.presentation.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -37,7 +36,10 @@ fun ErrorScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CenterTitle(content = "Unfortunately there was en error.")
-            CenterSubtitle(content = "We couldn't retrieve the data.")
+            CenterSubtitle(
+                content = "Check if you lost connection or if you are in flight mode. " +
+                        "Your Data will automatically be retrieved once you are back online"
+            )
         }
         Column(
             Modifier
@@ -45,20 +47,7 @@ fun ErrorScreen() {
                 .weight(1f),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            //ActionButton(buttonLabel, buttonAction)
-        }
-    }
-}
-
-@Composable
-fun ActionButton(label: String, action: () -> Unit) {
-    Button(
-        onClick = action,
-        Modifier
-            .fillMaxWidth()
-    ) {
-        Text(label)
+        ) {}
     }
 }
 

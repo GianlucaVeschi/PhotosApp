@@ -1,4 +1,4 @@
-package com.gianlucaveschi.photosapp.presentation.list
+package com.gianlucaveschi.photosapp.presentation.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.navigation.fragment.NavHostFragment
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
@@ -24,7 +23,7 @@ import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 @Composable
 fun PhotosListScreen(
     photos: List<PhotoItem>,
-    onPhotoItemClicked: (photoId : Int) -> Unit
+    onPhotoItemClicked: (photoId: Int) -> Unit
 ) {
     LazyColumn {
         items(photos) { photo ->
