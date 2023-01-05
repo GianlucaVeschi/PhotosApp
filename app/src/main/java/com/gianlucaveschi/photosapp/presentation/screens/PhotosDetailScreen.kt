@@ -27,17 +27,11 @@ fun PhotoDetailScreen(photoDetail: PhotoItem) {
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.size(size = 16.dp))
-            Text(
-                text = "ID: ${photoDetail.id}"
-            )
+            Text(text = "ID: ${photoDetail.id}")
             Spacer(modifier = Modifier.size(size = 16.dp))
-            Text(
-                text = "Title  ${photoDetail.title}"
-            )
+            Text(text = "Title  ${photoDetail.title}")
             Spacer(modifier = Modifier.size(size = 16.dp))
-            Text(
-                text = "Album  ${photoDetail.albumId}"
-            )
+            Text(text = "Album  ${photoDetail.albumId}")
         }
     }
 }

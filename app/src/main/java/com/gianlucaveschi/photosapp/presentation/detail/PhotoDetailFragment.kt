@@ -35,7 +35,7 @@ class PhotoDetailFragment : Fragment() {
                         color = MaterialTheme.colors.background
                     ) {
                         val photoId = args.photoId
-                        viewModel.getPhotoDetail(-1)
+                        viewModel.getPhotoDetail(photoId)
                         val photoDetail = viewModel.photoDetail.value
                         if (photoDetail != null) {
                             PhotoDetailScreen(photoDetail = photoDetail)
