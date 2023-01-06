@@ -1,4 +1,4 @@
-package com.gianlucaveschi.photosapp.data.mapper
+package com.gianlucaveschi.photosapp.domain.model.mapper
 
 import com.gianlucaveschi.photosapp.data.model.PhotoItemApiModel
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem

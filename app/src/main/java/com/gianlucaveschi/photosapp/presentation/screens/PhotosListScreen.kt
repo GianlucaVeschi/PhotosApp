@@ -17,12 +17,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.gianlucaveschi.photosapp.domain.model.PhotoItem
+import com.gianlucaveschi.photosapp.presentation.model.PhotoItemUiModel
 
 @OptIn(ExperimentalCoilApi::class, ExperimentalMaterialApi::class)
 @Composable
 fun PhotosListScreen(
-    photos: List<PhotoItem>,
+    photos: List<PhotoItemUiModel>,
     onPhotoItemClicked: (photoId: Int) -> Unit
 ) {
     LazyColumn {

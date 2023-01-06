@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gianlucaveschi.photosapp.domain.interactors.GetPhotosListUseCase
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
+import com.gianlucaveschi.photosapp.presentation.model.PhotoItemUiModel
+import com.gianlucaveschi.photosapp.presentation.model.mapper.mapToUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,13 +18,13 @@ class PhotosListViewModel @Inject constructor(
     private val getPhotosListUseCase: GetPhotosListUseCase
 ) : ViewModel() {
 
-    val photosList: MutableState<List<PhotoItem>?> =
+    val photosList: MutableState<List<PhotoItemUiModel>?> =
         mutableStateOf(listOf())
 
     fun getPhotosList() {
         viewModelScope.launch {
             val photos = getPhotosListUseCase()
-            photosList.value = photos
+            photosList.value = photos?.mapToUiModel()
             Log.d(TAG, ": $photos ")
         }
     }
