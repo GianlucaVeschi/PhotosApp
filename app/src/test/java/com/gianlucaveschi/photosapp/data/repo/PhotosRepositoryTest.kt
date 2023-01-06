@@ -8,7 +8,6 @@ import io.mockk.mockk
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.junit.Ignore
 import org.junit.Test
 import retrofit2.Response
 
@@ -43,13 +42,13 @@ class PhotosRepositoryTest : BaseJunitTest<PhotosRepository>() {
     fun `GIVEN a successful response WHEN fetching single photo THEN return correct response `() =
         runTest {
             coEvery { photosService.getPhotoItem(1) } returns Response.success(
-                    PhotoItemApiModel(
-                        albumId = 0,
-                        id = 1,
-                        thumbnailUrl = "thumbnailUrl",
-                        title = "title",
-                        url = "url"
-                    )
+                PhotoItemApiModel(
+                    albumId = 0,
+                    id = 1,
+                    thumbnailUrl = "thumbnailUrl",
+                    title = "title",
+                    url = "url"
+                )
             )
 
             val result = systemUnderTest.getPhotoItem(1)
