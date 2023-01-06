@@ -27,7 +27,7 @@ This project showcases an app which displays a list of images from the public ap
 - ~~Navigate to Detail Screen~~
 - ~~Add Error Screen~~
 
-- Handle Airplane mode / Check connectivity
+- ~~Handle Airplane mode / Check connectivity~~
 - Wrap api responses
 
 - Test ViewModels
