@@ -2,9 +2,8 @@ package com.gianlucaveschi.photosapp.data.repo
 
 import com.gianlucaveschi.photosapp.data.model.PhotoItemApiModel
 import com.gianlucaveschi.photosapp.data.network.PhotosService
-import retrofit2.Response
 
-class PhotosRepositoryImpl (
+class PhotosRepositoryImpl(
     private val photosService: PhotosService
 ) : PhotosRepository {
 

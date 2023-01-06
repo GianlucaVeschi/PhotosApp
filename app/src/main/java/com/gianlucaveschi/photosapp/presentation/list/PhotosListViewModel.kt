@@ -23,7 +23,13 @@ class PhotosListViewModel @Inject constructor(
         viewModelScope.launch {
             val photos = getPhotosListUseCase()
             photosList.value = photos
-            Log.d("INDIA", ": $photos ")
+            Log.d(TAG, ": $photos ")
         }
     }
+
+    companion object {
+        private const val TAG = "PhotosListViewModel"
+    }
 }
+
+

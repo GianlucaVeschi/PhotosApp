@@ -50,16 +50,18 @@ class PhotosListFragment : Fragment() {
                             ConnectivityObserver.Status.Available -> {
                                 photosListViewModel.getPhotosList()
                                 val photosList = photosListViewModel.photosList.value
-                                PhotosListScreen(
-                                    photos = photosList,
-                                    onPhotoItemClicked = { photoId ->
-                                        val destination = PhotosListFragmentDirections
-                                            .actionListFragmentToDetailFragment(photoId)
-                                        NavHostFragment
-                                            .findNavController(fragment)
-                                            .navigate(directions = destination)
-                                    }
-                                )
+                                if (photosList != null) {
+                                    PhotosListScreen(
+                                        photos = photosList,
+                                        onPhotoItemClicked = { photoId ->
+                                            val destination = PhotosListFragmentDirections
+                                                .actionListFragmentToDetailFragment(photoId)
+                                            NavHostFragment
+                                                .findNavController(fragment)
+                                                .navigate(directions = destination)
+                                        }
+                                    )
+                                }
                             }
                             ConnectivityObserver.Status.Unknown -> {
                                 LoadingScreen()
