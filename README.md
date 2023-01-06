@@ -36,4 +36,5 @@ This project showcases an app which displays a list of images from the public ap
 
 # Resources & Credits
 
+- How to handle connectivity in Android https://www.youtube.com/watch?v=TzV0oCRDNfM&t=281s
 
