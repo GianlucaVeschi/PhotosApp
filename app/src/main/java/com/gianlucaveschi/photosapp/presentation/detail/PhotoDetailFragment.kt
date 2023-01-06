@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.gianlucaveschi.photosapp.presentation.screens.ErrorScreen
+import com.gianlucaveschi.photosapp.presentation.screens.LoadingScreen
 import com.gianlucaveschi.photosapp.presentation.screens.PhotoDetailScreen
 import com.gianlucaveschi.photosapp.presentation.theme.PhotosAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,10 +39,11 @@ class PhotoDetailFragment : Fragment() {
                         val photoId = args.photoId
                         viewModel.getPhotoDetail(photoId)
                         val photoDetail = viewModel.photoDetail.value
+
                         if (photoDetail != null) {
                             PhotoDetailScreen(photoDetail = photoDetail)
                         } else {
-                            ErrorScreen()
+                            LoadingScreen()
                         }
                     }
                 }

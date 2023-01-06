@@ -35,7 +35,7 @@ fun ErrorScreen() {
                 .weight(2f),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CenterTitle(content = "Unfortunately there was en error.")
+            CenterTitle(content = "Unfortunately there was an error.")
             CenterSubtitle(
                 content = "Check if you lost connection or if you are in flight mode. " +
                         "Your Data will automatically be retrieved once you are back online"

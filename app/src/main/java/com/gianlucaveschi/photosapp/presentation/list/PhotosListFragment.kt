@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.gianlucaveschi.photosapp.data.util.ConnectivityObserver
 import com.gianlucaveschi.photosapp.data.util.NetworkConnectivityObserver
 import com.gianlucaveschi.photosapp.presentation.screens.ErrorScreen
+import com.gianlucaveschi.photosapp.presentation.screens.LoadingScreen
 import com.gianlucaveschi.photosapp.presentation.screens.PhotosListScreen
 import com.gianlucaveschi.photosapp.presentation.theme.PhotosAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,16 +40,16 @@ class PhotosListFragment : Fragment() {
             setContent {
                 PhotosAppTheme {
                     val status by connectivityObserver.observe().collectAsState(
-                        initial = ConnectivityObserver.Status.Unavailable
+                        initial = ConnectivityObserver.Status.Unknown
                     )
                     Surface(
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colors.background
                     ) {
-                        if (status == ConnectivityObserver.Status.Available) {
-                            photosListViewModel.getPhotosList()
-                            val photosList = photosListViewModel.photosList.value
-                            if (photosList != null) {
+                        when (status) {
+                            ConnectivityObserver.Status.Available -> {
+                                photosListViewModel.getPhotosList()
+                                val photosList = photosListViewModel.photosList.value
                                 PhotosListScreen(
                                     photos = photosList,
                                     onPhotoItemClicked = { photoId ->
@@ -59,11 +60,13 @@ class PhotosListFragment : Fragment() {
                                             .navigate(directions = destination)
                                     }
                                 )
-                            } else {
+                            }
+                            ConnectivityObserver.Status.Unknown -> {
+                                LoadingScreen()
+                            }
+                            else -> {
                                 ErrorScreen()
                             }
-                        } else {
-                            ErrorScreen()
                         }
                     }
                 }
