@@ -1,12 +1,10 @@
 package com.gianlucaveschi.photosapp.presentation.list
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gianlucaveschi.photosapp.domain.interactors.GetPhotosListUseCase
-import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 import com.gianlucaveschi.photosapp.presentation.model.PhotoItemUiModel
 import com.gianlucaveschi.photosapp.presentation.model.mapper.mapToUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,12 +23,7 @@ class PhotosListViewModel @Inject constructor(
         viewModelScope.launch {
             val photos = getPhotosListUseCase()
             photosList.value = photos?.mapToUiModel()
-            Log.d(TAG, ": $photos ")
         }
-    }
-
-    companion object {
-        private const val TAG = "PhotosListViewModel"
     }
 }
 
