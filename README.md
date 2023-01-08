@@ -31,8 +31,8 @@ This project showcases an app which displays a list of images from the public ap
 - Wrap api responses
 
 - Test ViewModels
-- Test Repository
-- Test UseCase
+- ~~Test Repository~~
+- ~~Test UseCase~~
 
 # Resources & Credits
 
