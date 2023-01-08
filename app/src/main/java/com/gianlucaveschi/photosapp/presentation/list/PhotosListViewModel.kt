@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PhotosListViewModel @Inject constructor(
     private val getPhotosListUseCase: GetPhotosListUseCase,
-    private val connectivityObserver: ConnectivityObserver
+    private val observeNetworkUseCase: ConnectivityObserver
 ) : ViewModel() {
 
     val photosList: MutableState<List<PhotoItemUiModel>?> =
@@ -32,7 +32,7 @@ class PhotosListViewModel @Inject constructor(
 
     private fun observeConnection() {
         viewModelScope.launch {
-            connection = connectivityObserver.observe()
+            connection = observeNetworkUseCase.observe()
         }
     }
 

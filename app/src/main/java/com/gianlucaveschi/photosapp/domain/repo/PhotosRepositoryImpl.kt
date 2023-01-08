@@ -1,7 +1,9 @@
-package com.gianlucaveschi.photosapp.data.repo
+package com.gianlucaveschi.photosapp.domain.repo
 
 import com.gianlucaveschi.photosapp.data.model.PhotoItemApiModel
 import com.gianlucaveschi.photosapp.data.network.PhotosService
+import com.gianlucaveschi.photosapp.data.repo.BaseRepo
+import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
 import com.gianlucaveschi.photosapp.data.util.NetworkResult
 
 class PhotosRepositoryImpl(

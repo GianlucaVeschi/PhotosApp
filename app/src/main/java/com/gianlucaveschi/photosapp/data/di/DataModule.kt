@@ -2,7 +2,7 @@ package com.gianlucaveschi.photosapp.data.di
 
 import com.gianlucaveschi.photosapp.data.network.PhotosService
 import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
-import com.gianlucaveschi.photosapp.data.repo.PhotosRepositoryImpl
+import com.gianlucaveschi.photosapp.domain.repo.PhotosRepositoryImpl
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
