@@ -3,6 +3,7 @@ package com.gianlucaveschi.photosapp.domain.interactors
 import com.BaseJunitTest
 import com.gianlucaveschi.photosapp.data.model.PhotoItemApiModel
 import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
+import com.gianlucaveschi.photosapp.data.util.NetworkResult
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -20,35 +21,50 @@ class GetPhotosListUseCaseTest : BaseJunitTest<GetPhotosListUseCase>() {
 
     @Test
     fun `WHEN fetching a list of items THEN map result to domain model`() = runTest {
-        coEvery { photosRepository.getPhotosList() } returns listOf(
-            PhotoItemApiModel(
-                albumId = 0,
-                id = 1,
-                thumbnailUrl = "thumbnailUrl",
-                title = "title",
-                url = "url"
-            ),
-            PhotoItemApiModel(
-                albumId = 0,
-                id = 2,
-                thumbnailUrl = "thumbnailUrl",
-                title = "title",
-                url = "url"
+        coEvery { photosRepository.getPhotosList() } returns NetworkResult.Success(
+            listOf(
+                PhotoItemApiModel(
+                    albumId = 0,
+                    id = 1,
+                    thumbnailUrl = "thumbnailUrl",
+                    title = "title",
+                    url = "url"
+                ),
+                PhotoItemApiModel(
+                    albumId = 0,
+                    id = 2,
+                    thumbnailUrl = "thumbnailUrl",
+                    title = "title",
+                    url = "url"
+                )
             )
         )
 
         val result = systemUnderTest()
 
-        assertEquals(result, listOf(mockedPhotoItem, mockedPhotoItem2))
+        assertEquals(listOf(mockedPhotoItem, mockedPhotoItem2), result)
     }
 
     @Test
-    fun `WHEN fetching a list of null items THEN return null`() = runTest {
-        coEvery { photosRepository.getPhotosList() } returns null
+    fun `WHEN fetching a list of items throws an error THEN return null`() = runTest {
+        coEvery { photosRepository.getPhotosList() } returns NetworkResult.Error(
+            400, "error"
+        )
 
         val result = systemUnderTest()
 
-        assertEquals(result, null)
+        assertEquals(null, result)
+    }
+
+    @Test
+    fun `WHEN fetching a list of items throws an exception THEN return null`() = runTest {
+        coEvery { photosRepository.getPhotosList() } returns NetworkResult.Exception(
+            Throwable()
+        )
+
+        val result = systemUnderTest()
+
+        assertEquals(null, result)
     }
 
     companion object {
