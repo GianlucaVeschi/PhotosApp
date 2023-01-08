@@ -2,6 +2,7 @@ package com.gianlucaveschi.photosapp.presentation.list
 
 import com.BaseJunitTest
 import com.gianlucaveschi.MainCoroutineRule
+import com.gianlucaveschi.photosapp.data.util.ConnectivityObserver
 import com.gianlucaveschi.photosapp.domain.interactors.GetPhotosListUseCase
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 import com.gianlucaveschi.photosapp.presentation.model.PhotoItemUiModel
@@ -19,9 +20,13 @@ import org.junit.Test
 class PhotosListViewModelTest : BaseJunitTest<PhotosListViewModel>() {
 
     private val getPhotosListUseCase: GetPhotosListUseCase = mockk(relaxed = true)
+    private val connectivityObserver: ConnectivityObserver = mockk(relaxed = true)
     val dispatcher = StandardTestDispatcher()
 
-    override fun initSelf() = PhotosListViewModel(getPhotosListUseCase)
+    override fun initSelf() = PhotosListViewModel(
+        getPhotosListUseCase,
+        connectivityObserver
+    )
 
     @ExperimentalCoroutinesApi
     @get:Rule
