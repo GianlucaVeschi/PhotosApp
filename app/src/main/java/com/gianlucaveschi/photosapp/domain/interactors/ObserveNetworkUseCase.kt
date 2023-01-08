@@ -1,15 +1,16 @@
-package com.gianlucaveschi.photosapp.data.util
+package com.gianlucaveschi.photosapp.domain.interactors
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
+import com.gianlucaveschi.photosapp.data.util.ConnectivityObserver
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
-class NetworkConnectivityObserver(
+class ObserveNetworkUseCase(
     private val context: Context
 ) : ConnectivityObserver {
 

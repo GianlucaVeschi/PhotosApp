@@ -1,6 +1,5 @@
 package com.gianlucaveschi.photosapp.presentation.list
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.gianlucaveschi.photosapp.data.util.ConnectivityObserver
-import com.gianlucaveschi.photosapp.data.util.NetworkConnectivityObserver
 import com.gianlucaveschi.photosapp.presentation.screens.ErrorScreen
 import com.gianlucaveschi.photosapp.presentation.screens.LoadingScreen
 import com.gianlucaveschi.photosapp.presentation.screens.PhotosListScreen
@@ -29,8 +27,6 @@ class PhotosListFragment : Fragment() {
     private val photosListViewModel: PhotosListViewModel by viewModels()
     private val fragment = this
 
-    private lateinit var connectivityObserver: ConnectivityObserver
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,7 +35,7 @@ class PhotosListFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 PhotosAppTheme {
-                    val status by connectivityObserver.observe().collectAsState(
+                    val status by photosListViewModel.connection.collectAsState(
                         initial = ConnectivityObserver.Status.Unknown
                     )
                     Surface(
@@ -74,10 +70,5 @@ class PhotosListFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        connectivityObserver = NetworkConnectivityObserver(context)
     }
 }
