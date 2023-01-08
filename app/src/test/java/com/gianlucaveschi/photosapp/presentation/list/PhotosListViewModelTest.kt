@@ -21,7 +21,8 @@ class PhotosListViewModelTest : BaseJunitTest<PhotosListViewModel>() {
 
     private val getPhotosListUseCase: GetPhotosListUseCase = mockk(relaxed = true)
     private val connectivityObserver: ConnectivityObserver = mockk(relaxed = true)
-    val dispatcher = StandardTestDispatcher()
+
+    private val dispatcher = StandardTestDispatcher()
 
     override fun initSelf() = PhotosListViewModel(
         getPhotosListUseCase,

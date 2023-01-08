@@ -10,10 +10,11 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
+import com.gianlucaveschi.photosapp.presentation.model.PhotoItemUiModel
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun PhotoDetailScreen(photoDetail: PhotoItem) {
+fun PhotoDetailScreen(photoDetail: PhotoItemUiModel) {
     Column(
         modifier = Modifier
             .padding(10.dp)
