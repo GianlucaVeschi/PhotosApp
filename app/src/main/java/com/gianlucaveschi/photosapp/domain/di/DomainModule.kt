@@ -40,5 +40,4 @@ class DomainModule {
     ) : ConnectivityObserver = ObserveNetworkUseCase(
         context
     )
-
 }

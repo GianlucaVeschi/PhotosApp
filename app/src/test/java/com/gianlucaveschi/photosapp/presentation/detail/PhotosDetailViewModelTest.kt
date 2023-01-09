@@ -7,16 +7,13 @@ import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 import com.gianlucaveschi.photosapp.presentation.model.PhotoItemUiModel
 import io.mockk.coEvery
 import io.mockk.mockk
-import org.junit.Assert.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.CoreMatchers.equalTo
-import org.junit.Assert.assertTrue
+import org.junit.Assert.assertEquals
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
-import org.hamcrest.Matcher
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.Ignore
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -27,6 +24,9 @@ class PhotosDetailViewModelTest : BaseJunitTest<PhotoDetailViewModel>() {
     override fun initSelf() = PhotoDetailViewModel(
         getPhotoDetailUseCase
     )
+
+
+    private val dispatcher = StandardTestDispatcher()
 
     @ExperimentalCoroutinesApi
     @get:Rule
@@ -53,6 +53,8 @@ class PhotosDetailViewModelTest : BaseJunitTest<PhotoDetailViewModel>() {
         )
 
         systemUnderTest.getPhotoDetail(0)
+        // Await the change
+        dispatcher.scheduler.advanceUntilIdle()
         val actualState : PhotoItemUiModel? = systemUnderTest.photoDetail.value
 
         assertEquals(mockedPhotoItemUiModel, actualState)

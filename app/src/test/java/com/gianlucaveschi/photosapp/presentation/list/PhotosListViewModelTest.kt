@@ -36,12 +36,13 @@ class PhotosListViewModelTest : BaseJunitTest<PhotosListViewModel>() {
     @Test
     fun `initial state is correct`() = runTest {
         val currentState = systemUnderTest.photosList.value
+        dispatcher.scheduler.advanceUntilIdle()
 
         assertEquals(listOf<PhotoItemUiModel>(), currentState)
     }
 
     @Test
-    @Ignore("assertEquals should assert that the objects have the same fields")
+    @Ignore("Test fails as objects in memory are compared instead of their data")
     fun `state is updated`() = runTest {
         coEvery { getPhotosListUseCase() } returns listOf(
             PhotoItem(
