@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gianlucaveschi.photosapp.data.util.ConnectivityObserver
+import com.gianlucaveschi.photosapp.data.util.ConnectivityObserver.Status
 import com.gianlucaveschi.photosapp.domain.interactors.GetPhotosListUseCase
 import com.gianlucaveschi.photosapp.presentation.model.mapper.mapToUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,18 +29,20 @@ class PhotosListViewModel @Inject constructor(
     private fun getPhotosList() {
         observeNetworkUseCase.observe().onEach { connectionStatus ->
             when (connectionStatus) {
-                ConnectivityObserver.Status.Available -> {
+                Status.Available -> {
                     val photos = getPhotosListUseCase()?.mapToUiModel() ?: emptyList()
                     _photosListState.value = PhotosListState(photos = photos)
                 }
-                else -> {
-                    _photosListState.value = PhotosListState(
-                        error = "Error"
-                    )
+                Status.Unavailable -> {
+                    _photosListState.value = PhotosListState(error = "Connection is unavailable")
+                }
+                Status.Losing -> {
+                    _photosListState.value = PhotosListState(error = "Losing connection")
+                }
+                Status.Lost -> {
+                    _photosListState.value = PhotosListState(error = "Connection is lost")
                 }
             }
         }.launchIn(viewModelScope)
     }
 }
-
-
