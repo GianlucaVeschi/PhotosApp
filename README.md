@@ -12,6 +12,7 @@ Things I am NOT so satisfied with
 - Two core ViewModel tests are failing and I couldn't find out why, more information is contained in their respective classes.
 - The API responses are wrapped in a sealed class, but the errors are simply logged and not really handled or passed to the UI.
 - Didn't implement a "Loading" state.
+- Didn't implement pagination
 
 
 # Tech Stack
