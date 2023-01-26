@@ -43,7 +43,6 @@ class PhotosListFragment : Fragment() {
                     ) {
                         when (status) {
                             ConnectivityObserver.Status.Available -> {
-                                photosListViewModel.getPhotosList()
                                 val photosList = photosListViewModel.photosList.value
                                 if (photosList != null) {
                                     PhotosListScreen(
