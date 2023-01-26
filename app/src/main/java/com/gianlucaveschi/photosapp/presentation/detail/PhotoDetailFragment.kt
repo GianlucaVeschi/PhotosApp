@@ -37,10 +37,9 @@ class PhotoDetailFragment : Fragment() {
                     ) {
                         val photoId = args.photoId
                         viewModel.getPhotoDetail(photoId)
-                        val photoDetail = viewModel.photoDetail.value
-
-                        if (photoDetail != null) {
-                            PhotoDetailScreen(photoDetail = photoDetail)
+                        val photoDetail = viewModel.photoDetailState.value
+                        if (photoDetail.photo != null) {
+                            PhotoDetailScreen(photoDetail = photoDetail.photo)
                         } else {
                             LoadingScreen()
                         }

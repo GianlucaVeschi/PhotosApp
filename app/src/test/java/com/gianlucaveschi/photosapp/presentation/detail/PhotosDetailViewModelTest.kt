@@ -34,7 +34,7 @@ class PhotosDetailViewModelTest : BaseJunitTest<PhotoDetailViewModel>() {
 
     @Test
     fun `initial state is correct`() = runTest {
-        val currentState = systemUnderTest.photoDetail.value
+        val currentState = systemUnderTest.photoDetailState.value
 
         assertEquals(null, currentState)
     }
@@ -55,7 +55,7 @@ class PhotosDetailViewModelTest : BaseJunitTest<PhotoDetailViewModel>() {
         systemUnderTest.getPhotoDetail(0)
         // Await the change
         dispatcher.scheduler.advanceUntilIdle()
-        val actualState : PhotoItemUiModel? = systemUnderTest.photoDetail.value
+        val actualState: PhotoItemUiModel? = systemUnderTest.photoDetailState.value
 
         assertEquals(mockedPhotoItemUiModel, actualState)
     }
