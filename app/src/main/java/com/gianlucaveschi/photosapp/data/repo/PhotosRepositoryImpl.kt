@@ -1,10 +1,10 @@
-package com.gianlucaveschi.photosapp.domain.repo
+package com.gianlucaveschi.photosapp.data.repo
 
 import com.gianlucaveschi.photosapp.data.model.PhotoItemApiModel
 import com.gianlucaveschi.photosapp.data.network.PhotosService
-import com.gianlucaveschi.photosapp.data.repo.BaseRepo
-import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
 import com.gianlucaveschi.photosapp.data.util.NetworkResult
+import com.gianlucaveschi.photosapp.domain.repo.BaseRepo
+import com.gianlucaveschi.photosapp.domain.repo.PhotosRepository
 
 class PhotosRepositoryImpl(
     private val photosService: PhotosService

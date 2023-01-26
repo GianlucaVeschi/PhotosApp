@@ -1,11 +1,11 @@
 package com.gianlucaveschi.photosapp.domain.di
 
 import android.content.Context
-import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
 import com.gianlucaveschi.photosapp.data.util.ConnectivityObserver
 import com.gianlucaveschi.photosapp.domain.interactors.GetPhotoDetailUseCase
 import com.gianlucaveschi.photosapp.domain.interactors.GetPhotosListUseCase
 import com.gianlucaveschi.photosapp.domain.interactors.ObserveNetworkUseCase
+import com.gianlucaveschi.photosapp.domain.repo.PhotosRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

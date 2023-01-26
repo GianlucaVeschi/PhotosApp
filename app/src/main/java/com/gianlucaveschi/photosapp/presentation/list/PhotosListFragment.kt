@@ -25,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class PhotosListFragment : Fragment() {
 
     private val photosListViewModel: PhotosListViewModel by viewModels()
-    private val fragment = this
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +52,7 @@ class PhotosListFragment : Fragment() {
                                             val destination = PhotosListFragmentDirections
                                                 .actionListFragmentToDetailFragment(photoId)
                                             NavHostFragment
-                                                .findNavController(fragment)
+                                                .findNavController(this@PhotosListFragment)
                                                 .navigate(directions = destination)
                                         }
                                     )

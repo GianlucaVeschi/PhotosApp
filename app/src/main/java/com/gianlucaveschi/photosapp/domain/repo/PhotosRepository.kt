@@ -1,4 +1,4 @@
-package com.gianlucaveschi.photosapp.data.repo
+package com.gianlucaveschi.photosapp.domain.repo
 
 import com.gianlucaveschi.photosapp.data.model.PhotoItemApiModel
 import com.gianlucaveschi.photosapp.data.util.NetworkResult

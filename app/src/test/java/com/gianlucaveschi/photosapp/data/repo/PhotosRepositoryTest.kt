@@ -3,7 +3,7 @@ package com.gianlucaveschi.photosapp.data.repo
 import com.BaseJunitTest
 import com.gianlucaveschi.photosapp.data.model.PhotoItemApiModel
 import com.gianlucaveschi.photosapp.data.network.PhotosService
-import com.gianlucaveschi.photosapp.domain.repo.PhotosRepositoryImpl
+import com.gianlucaveschi.photosapp.domain.repo.PhotosRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.Assert.assertEquals

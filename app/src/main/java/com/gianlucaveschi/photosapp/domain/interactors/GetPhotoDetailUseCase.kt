@@ -1,9 +1,9 @@
 package com.gianlucaveschi.photosapp.domain.interactors
 
-import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
 import com.gianlucaveschi.photosapp.data.util.NetworkResult
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
 import com.gianlucaveschi.photosapp.domain.model.mapper.mapToDomain
+import com.gianlucaveschi.photosapp.domain.repo.PhotosRepository
 import timber.log.Timber
 
 class GetPhotoDetailUseCase(

@@ -2,9 +2,9 @@ package com.gianlucaveschi.photosapp.domain.interactors
 
 import com.BaseJunitTest
 import com.gianlucaveschi.photosapp.data.model.PhotoItemApiModel
-import com.gianlucaveschi.photosapp.data.repo.PhotosRepository
 import com.gianlucaveschi.photosapp.data.util.NetworkResult
 import com.gianlucaveschi.photosapp.domain.model.PhotoItem
+import com.gianlucaveschi.photosapp.domain.repo.PhotosRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.Assert.assertEquals
